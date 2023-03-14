@@ -19,9 +19,18 @@
 <body>
     <h1>Hello Vue</h1>
     <div id="app">
-        <!-- v-if directive shows/hides content in question based on a condition given in the quotes -->
+        <!-- v-if dirctive shows/hides content in question based on a condition given in the quotes -->
+
+        <!-- attribute binding (binding dynamic values to html ATTRIBUTES)-->
+
+
         <div v-if="showBooks">
-            <p>{{ books[0].title }} - {{ books[0].author }}</p>
+            <ul>
+                <li v-for="book in books"> <!-- cycles through an entire array in the html via vue-->
+                    <h3>{{ book.title }}</h3>
+                    <p>{{ book.author }}</p>
+                </li>
+            </ul>
         </div>
         <!-- Tells the dom to look for a Vue variable for its html content (only works in the scope of Vue app)-->
 
