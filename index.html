@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello Vue</h1>
+    <div id="app">
+        <!-- v-if directive shows/hides content in question based on a condition given in the quotes -->
+        <div v-if="showBooks">
+            <p>{{ books[0].title }} - {{ books[0].author }}</p>
+        </div>
+        <!-- Tells the dom to look for a Vue variable for its html content (only works in the scope of Vue app)-->
+
+        <button @click = "toggleShowBooks">
+            <span v-if="showBooks">Hide Books</span>
+            <span v-else>Show Books</span>
+            <!-- v-else can be used after an element with v-if. Works like you would think. -->
+        </button>
+        <!-- <button v-on:click="age++">Increase Age</button>
+        <button v-on:click="age--">Decrease Age</button> -->
+            <!-- This attribute is a Vue directive that runs some javascript -->
+            <!-- The 'v-on:' can be replaced with an @ symbol for same effect -->
+        <!-- <div @click="changeTitle('Of Mice and Men')">Change book title</div> -->
+
+        <div v-show="showBooks">Currently showing books</div>
+        <!-- v-show can be used in place of v-if and v-else, but instead of taking elements out of the DOM it just applies CSS to hide it. -->
+
+        <br>
+        <!-- mouse events -->
+        <!-- can take in the event objects from javascript and do work with those
+        remember to have 'e' as the first parameter (write as $event if you want to use your own parameters as well)-->
+        <div class="box" @mouseover="handleEvent($event, 5)">mouseover (enter)</div>
+        <div class="box" @mouseleave="handleEvent">mouseleave</div>
+        <div class="box" @dblclick="handleEvent">double click</div>
+        <div class="box" @mousemove="handleMousemove">position - {{ x }} {{ y }}</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
