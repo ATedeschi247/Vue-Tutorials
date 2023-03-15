@@ -4,10 +4,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Vue</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.min.js"></script>
     <style>
         img {
-            width: 100%;
+            width: 100px;
         }
         body{
             background: #eee;
@@ -17,6 +17,20 @@
         p, h3, ul{
             margin: 0;
             padding: 0;
+        }
+        li {
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        li.fav {
+            background: #ff9ed2;
+            color: white;
         }
     </style>
 </head>
@@ -28,12 +42,12 @@
         <!-- attribute binding (binding dynamic values to html ATTRIBUTES)-->
         <!-- <a v-bind:href="url">worst website</a><br>
         <a :href="url">worst website</a>  the : before attribute is a shortcut before "v-bind" -->
-
         <div v-if="showBooks">
             <ul>
                 <!-- : can be applied to class attribute too,
-                 but it is able to take in an object. The object key is the class to be applied, and the object value is the condition for its application -->
-                <li v-for="book in books" :class="{ fav: book.isFav }"> <!-- cycles through an entire array in the html via vue-->
+                 but it is able to take in an object. The object key is the class to be applied, and the object value is the condition for its application. -->
+                <li v-for="book in filteredBooks" :class="{ fav: book.isFav }" @click="toggleFav(book)"> <!-- cycles through an entire array in the html via vue-->
+               <!-- btw this ^ 'book' can now be accessed anywhere inside of this li tag, like in the @click directive -->
                     <img :src="book.img" :alt="book.title">
                     <h3>{{ book.title }}</h3>
                     <p>{{ book.author }}</p>

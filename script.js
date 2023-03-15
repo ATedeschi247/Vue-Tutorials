@@ -16,7 +16,7 @@ const app = Vue.createApp({
                 { title: 'name of the wind', author: 'patrick rothfuss', img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg', isFav: true},
                 { title: 'the way of kings', author: 'brandon sanderson', img: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8&w=1000&q=80', isFav: false},
                 { title: 'the final empire', author: 'brandon sanderson', img: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', isFav: true}
-            ],
+            ]
         }
     },
     methods: {
@@ -36,6 +36,16 @@ const app = Vue.createApp({
         handleMousemove(e) {
             this.x = e.offsetX;
             this.y = e.offsetY;
+        },
+        toggleFav(book) {
+            book.isFav = !book.isFav;
+        }
+    },
+    computed: {                 // establishes computed properties, which are basically properties that depend on other Vue-defined properties (therefore, it can't be put in data() like a static property)
+        filteredBooks() {
+            return this.books.filter(function(book) {
+                return book.isFav;
+            });         // also remember that 'return' basically means 'take on' or 'become'.
         }
     }
 
